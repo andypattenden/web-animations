@@ -4,12 +4,36 @@
       class="animation"
       :src="require('@/assets/undraw_dog_walking.svg')"
     />
+
+    <button
+      @click="playAnimation"
+      type="button"
+    >
+      Play
+    </button>
+
+    <button
+      @click="pauseAnimation"
+      type="button"
+    >
+      Pause
+    </button>
   </div>
 </template>
 
 <script>
 export default {
   name: 'Home',
+
+  methods: {
+    pauseAnimation() {
+      document.getAnimations().forEach(animation => animation.pause())
+    },
+
+    playAnimation() {
+      document.getAnimations().forEach(animation => animation.play())
+    }
+  }
 }
 </script>
 
