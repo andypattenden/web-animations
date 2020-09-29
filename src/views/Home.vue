@@ -1,7 +1,9 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <inline-svg
+      class="animation"
+      :src="require('@/assets/undraw_dog_walking.svg')"
+    />
   </div>
 </template>
 
