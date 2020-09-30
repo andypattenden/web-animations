@@ -2,6 +2,10 @@
   <div class="home">
     <inline-svg
       class="animation"
+      :class="{
+        'animation--dog-walking-past': dogWalkingPast,
+        'animation--man-walking-past': manWalkingPast
+      }"
       :src="require('@/assets/undraw_dog_walking.svg')"
     />
 
@@ -18,12 +22,56 @@
     >
       Pause
     </button>
+
+    <button
+      @click="speedUp"
+      type="button"
+    >
+      Speed up
+    </button>
+
+    <button
+      @click="slowDown"
+      type="button"
+    >
+      Slow down
+    </button>
+
+    <button
+      @click="resetSpeed"
+      type="button"
+    >
+      Reset Speed
+    </button>
+
+    <br/>
+
+    <button
+      @click="manWalkingPast = !manWalkingPast"
+      type="button"
+    >
+      Man Walking Past
+    </button>
+
+    <button
+      @click="dogWalkingPast = !dogWalkingPast"
+      type="button"
+    >
+      Dog Walking Past
+    </button>
   </div>
 </template>
 
 <script>
 export default {
   name: 'Home',
+
+  data() {
+    return {
+      dogWalkingPast: false,
+      manWalkingPast: false,
+    }
+  },
 
   methods: {
     pauseAnimation() {
@@ -32,20 +80,61 @@ export default {
 
     playAnimation() {
       document.getAnimations().forEach(animation => animation.play())
-    }
+    },
+
+    updatePlaybackRate(multiplier) {
+      document.getAnimations().forEach(animation => {
+        animation.updatePlaybackRate(multiplier === 1 ? multiplier : animation.playbackRate * multiplier)
+        animation.play()
+      })
+    },
+
+    speedUp() {
+      this.updatePlaybackRate(1.2)
+    },
+
+    slowDown() {
+      this.updatePlaybackRate(0.9)
+    },
+
+    resetSpeed() {
+      this.updatePlaybackRate(1)
+    },
   }
 }
 </script>
 
 <style lang="scss">
 
+$walking-animation-speed: 0.75s;
+$dog-walking-animation-speed: $walking-animation-speed * 0.33333333;
+
 .animation {
   width: 100%;
   height: auto;
-}
 
-$walking-animation-speed: 0.75s;
-$dog-walking-animation-speed: $walking-animation-speed * 0.33333333;
+  &--dog-walking-past {
+    #dog {
+      animation: background 10s infinite linear reverse;
+
+      &__lead {
+        display: none;
+      }
+    }
+  }
+
+  &--man-walking-past {
+    #man {
+      animation: background 10s infinite linear reverse;
+    }
+
+    #dog {
+      &__lead {
+        display: none;
+      }
+    }
+  }
+}
 
 // Dog
 #dog {
@@ -135,6 +224,10 @@ $dog-walking-animation-speed: $walking-animation-speed * 0.33333333;
 
 // Man
 #man {
+  .animation--man-walking-past & {
+    animation: background 10s infinite linear reverse;
+  }
+
   &__upper-body {
     animation: man-body #{$walking-animation-speed / 2} linear infinite alternate-reverse;
     transform-box: fill-box;
