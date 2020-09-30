@@ -83,10 +83,18 @@ export default {
   watch: {
     playbackRate(value) {
       document.getAnimations().forEach(animation => {
-        if(animation.animationName !== 'sweat') {
+        if(animation.animationName !== 'man__sweat') {
           animation.updatePlaybackRate(value)
         }
       })
+    },
+
+    manWalkingPast() {
+      this.reset()
+    },
+
+    dogWalkingPast() {
+      this.reset()
     }
   },
 
@@ -124,6 +132,14 @@ export default {
   },
 
   methods: {
+    async reset() {
+      await this.$nextTick()
+      document.getAnimations().forEach(animation => {
+        if(animation.animationName.startsWith('man') || animation.animationName.startsWith('dog')) {
+          animation.startTime = 0
+        }
+      })
+    },
     pauseAnimation() {
       document.getAnimations().forEach(animation => animation.pause())
     },
@@ -191,7 +207,7 @@ export default {
     }
 
     &--fast {
-      #sweat,
+      #man__sweat,
       #dog__tongue {
         opacity: 1;
       }
@@ -211,44 +227,6 @@ export default {
       #man__neck {
         fill: #f66f6f
       }
-    }
-  }
-
-  #sweat {
-    display: block;
-    opacity: 0;
-
-    &-drop-1 {
-      transform-box: fill-box;
-      animation: sweat 1s linear 0.25s infinite;
-    }
-
-    &-drop-2 {
-      transform-box: fill-box;
-      animation: sweat 1s linear 0.5s infinite ;
-    }
-
-    &-drop-3 {
-      transform-box: fill-box;
-      animation: sweat 1s  linear 0s infinite;
-    }
-  }
-
-  @keyframes sweat {
-    0% {
-      scale: 0;
-      transform: translateY(0);
-      opacity: 0;
-    }
-
-    50% {
-      scale: 1;
-      opacity: 1;
-    }
-
-    100% {
-      opacity: 0;
-      transform: translateY(20px);
     }
   }
 
@@ -281,6 +259,44 @@ export default {
     &__face,
     &__neck {
       transition: fill 2s ease-in-out;
+    }
+
+    &__sweat {
+      display: block;
+      opacity: 0;
+
+      &-drop-1 {
+        transform-box: fill-box;
+        animation: sweat 1s linear 0.25s infinite;
+      }
+
+      &-drop-2 {
+        transform-box: fill-box;
+        animation: sweat 1s linear 0.5s infinite ;
+      }
+
+      &-drop-3 {
+        transform-box: fill-box;
+        animation: sweat 1s  linear 0s infinite;
+      }
+    }
+
+    @keyframes sweat {
+      0% {
+        scale: 0;
+        transform: translateY(0);
+        opacity: 0;
+      }
+
+      50% {
+        scale: 1;
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
     }
   }
 }

@@ -9,6 +9,23 @@
     }
   }
 
+  &__lead {
+    transform-origin: bottom right;
+    transform-box: fill-box;
+    animation: dog-lead $walking-animation-speed linear infinite alternate;
+
+    @keyframes dog-lead {
+      from {
+        scale: 1;
+      }
+
+      to {
+        scale: 1.75 0.75;
+        transform: translateY(-20px);
+      }
+    }
+  }
+
   &__ear-right,
   &__ear--left {
     transform-origin: center;
