@@ -1,0 +1,41 @@
+@keyframes background {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+#building,
+#tree,
+#plant,
+#cloud--large,
+#cloud--small {
+  animation-name: background;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+#building {
+  animation-duration: $walking-animation-speed * 80; // 60s
+}
+
+#tree{
+  animation-duration: $walking-animation-speed * 20; // 15s
+}
+
+#plant {
+  animation-duration: $walking-animation-speed * 13.333333; // 10s
+}
+
+#cloud {
+  &--large {
+    animation-duration: $walking-animation-speed * 160; // 120s
+  }
+
+  &--small {
+    animation-duration: $walking-animation-speed * 120; // 90s
+  }
+}

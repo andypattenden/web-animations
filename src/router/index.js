@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Home from '../views/Home'
+import Css from '../views/Css'
+import CssWaapi from '../views/CssWaapi'
 
 Vue.use(VueRouter)
 
@@ -9,6 +11,20 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/css',
+    name: 'CSS',
+    component: Css
+  },
+  {
+    path: '/css-waapi',
+    name: 'CSS/WAAPI',
+    component: CssWaapi
+  },
+  {
+    path: '*',
+    redirect: '/css',
   },
 ]
 

@@ -1,0 +1,148 @@
+#man {
+
+
+  &__upper-body {
+    animation: man-body #{$walking-animation-speed / 2} linear infinite alternate-reverse;
+    transform-box: fill-box;
+
+    @keyframes man-body {
+      from {
+        transform: translateY(0px);
+      }
+
+      to {
+        transform: translateY(20px);
+      }
+    }
+  }
+
+  &__arm {
+    &--right {
+      animation: man-arm $walking-animation-speed linear infinite alternate;
+      transform-origin: 30px 30px;
+      transform-box: fill-box;
+    }
+
+    @keyframes man-arm {
+      from {
+        transform: rotateZ(22deg);
+      }
+
+      to {
+        transform: rotateZ(-22deg);
+      }
+    }
+  }
+
+  &__foot--left,
+  &__foot--right {
+    transform-box: fill-box;
+  }
+
+  &__foot--right {
+    transform-origin: top left;
+    animation: man-foot-right $walking-animation-speed linear infinite alternate;
+
+    @keyframes man-foot-right {
+      from {
+        transform: rotateZ(-10deg);
+      }
+
+      to {
+        transform: rotateZ(30deg) translate(10px, -35px);
+      }
+    }
+  }
+
+  &__foot--left {
+    transform-origin: 0 20px;
+
+    // FIXME: this breaks the lower leg transform-origin
+    // animation: man-foot-left 1.5s linear infinite alternate;
+
+    @keyframes man-foot-left {
+      from {
+        transform: rotateZ(30deg);
+      }
+
+      to {
+        transform: rotateZ(-20deg) translate(-10px, 0);
+      }
+    }
+  }
+
+  &__leg {
+    $leg-timing: linear;
+
+    &-upper--left,
+    &-lower--left,
+    &-upper--right,
+    &-lower--right {
+      transform-origin: top;
+      transform-box: fill-box;
+    }
+
+    // Right leg
+    &-upper--right {
+      transform-origin: 50px 20px;
+      animation: man-upper-leg-right $walking-animation-speed $leg-timing infinite alternate-reverse;
+
+      @keyframes man-upper-leg-right {
+        from {
+          transform: rotateZ(20deg);
+        }
+
+        to {
+          transform: rotateZ(-10deg);
+        }
+      }
+    }
+
+    &-lower--right {
+      transform-origin: 80% 40px ;
+      animation: man-lower-leg-right $walking-animation-speed $leg-timing infinite alternate-reverse;
+
+      @keyframes man-lower-leg-right {
+        from {
+          transform: rotateZ(-15deg) translate(-20px, 0px);
+        }
+
+        to {
+          transform: rotateZ(-70deg) translate(35px, 40px);
+        }
+      }
+    }
+
+
+    // Left Leg
+    &-upper--left {
+      transform-origin: 25px 20px;
+      animation: man-upper-leg-left $walking-animation-speed $leg-timing infinite alternate;
+
+      @keyframes man-upper-leg-left {
+        from {
+          transform: rotateZ(20deg);
+        }
+
+        to {
+          transform: rotateZ(-10deg);
+        }
+      }
+    }
+
+    &-lower--left {
+      transform-origin: 33px 10px;
+      animation: man-lower-leg-left $walking-animation-speed $leg-timing infinite alternate;
+
+      @keyframes man-lower-leg-left {
+        from {
+          transform: rotateZ(40deg) translateX(-13px);
+        }
+
+        to {
+          transform: rotateZ(-20deg) translateX(10px);
+        }
+      }
+    }
+  }
+}

@@ -1,7 +1,8 @@
 <template>
-  <div class="home">
-    <h1>Web Animation Demo</h1>
-    <p>Investigating various techniques for adding animations to web with SVGs</p>
+  <div class="css">
+    <h2>CSS Only</h2>
+
+    <p>The below animation is achieved with an SVG which has its elements grouped. CSS is then used to add keyframe animations and transitions.</p>
 
     <div class="animation-container">
       <inline-svg
@@ -13,12 +14,12 @@
 </template>
 
 <script>
-
 export default {
-  name: "Home",
-};
+  name: 'CSS',
+}
 </script>
 
 <style lang="scss" scoped>
   @import '~@/scss/common';
+  @import '~@/scss/animations';
 </style>

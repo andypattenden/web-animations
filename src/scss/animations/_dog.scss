@@ -1,0 +1,100 @@
+#dog {
+  @keyframes dog-leg-left {
+    from {
+      transform: rotateZ(20deg);
+    }
+
+    to {
+      transform: rotateZ(60deg) translateY(60%);
+    }
+  }
+
+  &__ear-right,
+  &__ear--left {
+    transform-origin: center;
+    transform-box: fill-box;
+
+    @keyframes dog-ear {
+      from {
+        transform: rotateZ(0deg);
+      }
+
+      to {
+        transform: rotateZ(30deg);
+      }
+    }
+  }
+
+  &__ear--left {
+    animation: dog-ear 1s ease-in-out infinite alternate-reverse;
+  }
+
+  &__ear-right {
+    animation: dog-ear 1s ease-in-out infinite alternate;
+  }
+
+  &__front-leg--left,
+  &__back-leg--left {
+    transform-origin: top;
+    transform-box: fill-box;
+  }
+
+  &__front-leg--left {
+    animation: dog-leg-left $dog-walking-animation-speed linear infinite alternate;
+  }
+
+  &__back-leg--left {
+    animation: dog-leg-left $dog-walking-animation-speed linear infinite alternate-reverse;
+  }
+
+  &__front-leg--right,
+  &__back-leg--right {
+    transform-box: fill-box;
+  }
+
+  &__front-leg--right {
+    transform-origin: 30px 45px;
+    animation: dog-leg-right-front $dog-walking-animation-speed linear infinite alternate-reverse;
+
+    @keyframes dog-leg-right-front {
+      from {
+        transform: rotateZ(-20deg);
+      }
+
+      to {
+        transform: rotateZ(20deg) translateX(-5px);
+      }
+    }
+  }
+
+  &__back-leg--right {
+    transform-origin: 30px 40px;
+    animation: dog-leg-right-back $dog-walking-animation-speed linear infinite alternate;
+
+    @keyframes dog-leg-right-back {
+      from {
+        transform: rotateZ(-20deg) translateX(10px);
+      }
+
+      to {
+        transform: rotateZ(20deg) ;
+      }
+    }
+  }
+
+  &__tail {
+    transform-origin: bottom right;
+    transform-box: fill-box;
+    animation: dog-tail 0.5s infinite alternate;
+
+    @keyframes dog-tail {
+      from {
+        transform: rotateZ(-10deg);
+      }
+
+      to {
+        transform: rotateZ(10deg)
+      }
+    }
+  }
+}
