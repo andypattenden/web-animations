@@ -31,117 +31,19 @@
       :max-playback-rate="maxPlaybackRate"
     />
 
-    <section>
+    <section class="section">
       <h2 class="title is-5">Playback Controls</h2>
       <p class="subtitle is-7">
         Manipulate the animation through the Web Animations API
       </p>
       <div class="columns is-centered">
-        <div class="column is-narrow buttons is-centered has-addons">
-          <button
-            class="button is-small is-primary"
-            type="button"
-            :disabled="playing"
-            @click="playAnimation"
-          >
-            Play
-          </button>
-
-          <button
-            class="button is-small is-primary"
-            type="button"
-            :disabled="!playing"
-            @click="pauseAnimation"
-          >
-            Pause
-          </button>
-        </div>
-        <div class="column is-narrow buttons is-centered">
-          <button
-            class="button is-small is-primary"
-            type="button"
-            :disabled="minPlaybackRateReached"
-            @click="decreaseSpeed"
-          >
-            &#x25BC; Speed
-          </button>
-
-          <button
-            class="button is-small is-primary"
-            type="button"
-            :disabled="playbackRate <= 1"
-            @click="resetSpeed"
-          >
-            Speed Reset
-          </button>
-
-          <button
-            class="button is-small is-primary"
-            type="button"
-            :disabled="maxPlaybackRateReached"
-            @click="increaseSpeed"
-          >
-            &#x25B2; Speed
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <section class="columns is-vcentered is-centered">
-      <label for="column is-narrow animation-select has-tect-right">
-        Show playback controls for:
-      </label>
-
-      <div class="column is-narrow">
-        <div class="select is-primary">
-          <select
-            id="animation-select"
-            v-model="animationPlaybackControlsToShow"
-          >
-            <option disabled>Choose an option</option>
-            <option
-              v-for="(item, itemName) in animationStates"
-              :key="itemName"
-              :value="itemName"
-            >
-              {{ itemName | capitalise }}
-            </option>
-          </select>
-        </div>
-      </div>
-
-      <div class="column is-narrow">elements</div>
-    </section>
-
-    <template
-      v-for="(value, partName) of animationStates[
-        animationPlaybackControlsToShow
-      ]"
-    >
-      <h3
-        :key="`${animationPlaybackControlsToShow}-${partName}-heading`"
-        class="subtitle is-6 mb-2"
-      >
-        {{ partName | capitalise }}
-
-        <small>
-          (Speed:
-          {{ value.playbackRate }})</small
-        >
-      </h3>
-      <div
-        :key="`${animationPlaybackControlsToShow}-${partName}-play-controls`"
-        class="columns is-centered"
-      >
         <div class="column is-narrow">
           <div class="buttons is-centered has-addons">
             <button
               class="button is-small is-primary"
               type="button"
-              :disabled="value.playing"
-              @click="
-                playPartAnimation(animationPlaybackControlsToShow, partName)
-              "
+              :disabled="playing"
+              @click="playAnimation"
             >
               Play
             </button>
@@ -149,27 +51,20 @@
             <button
               class="button is-small is-primary"
               type="button"
-              :disabled="!value.playing"
-              @click="
-                pausePartAnimation(animationPlaybackControlsToShow, partName)
-              "
+              :disabled="!playing"
+              @click="pauseAnimation"
             >
               Pause
             </button>
           </div>
         </div>
-
         <div class="column is-narrow">
-          <div
-            :key="`${animationPlaybackControlsToShow}-${partName}-speed-controls`"
-            class="buttons is-centered"
-          >
+          <div class="buttons is-centered">
             <button
               class="button is-small is-primary"
               type="button"
-              @click="
-                decreasePartSpeed(animationPlaybackControlsToShow, partName)
-              "
+              :disabled="minPlaybackRateReached"
+              @click="decreaseSpeed"
             >
               &#x25BC; Speed
             </button>
@@ -177,8 +72,8 @@
             <button
               class="button is-small is-primary"
               type="button"
-              :disabled="value.playbackRate === 1"
-              @click="resetPartSpeed(animationPlaybackControlsToShow, partName)"
+              :disabled="playbackRate <= 1"
+              @click="resetSpeed"
             >
               Speed Reset
             </button>
@@ -186,16 +81,137 @@
             <button
               class="button is-small is-primary"
               type="button"
-              @click="
-                increasePartSpeed(animationPlaybackControlsToShow, partName)
-              "
+              :disabled="maxPlaybackRateReached"
+              @click="increaseSpeed"
             >
               &#x25B2; Speed
             </button>
           </div>
         </div>
       </div>
-    </template>
+
+      <div class="columns is-vcentered is-centered">
+        <label for="column is-narrow animation-select has-tect-right">
+          Show playback controls for:
+        </label>
+
+        <div class="column is-narrow">
+          <div class="select is-primary">
+            <select
+              id="animation-select"
+              v-model="animationPlaybackControlsToShow"
+            >
+              <option disabled>Choose an option</option>
+              <option
+                v-for="(item, itemName) in animationStates"
+                :key="itemName"
+                :value="itemName"
+              >
+                {{ itemName | capitalise }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="column is-narrow">elements</div>
+      </div>
+
+      <div v-if="animationPlaybackControlsToShow">
+        <p class="is-size-7">
+          Note: if the speed has been increased using the global controls, the
+          controls below will be affected by the speed decreasing
+        </p>
+
+        <template
+          v-for="(value, partName) of animationStates[
+            animationPlaybackControlsToShow
+          ]"
+        >
+          <h3
+            :key="`${animationPlaybackControlsToShow}-${partName}-heading`"
+            class="subtitle is-6 mb-2"
+          >
+            {{ partName | capitalise }}
+
+            <small>
+              (Speed:
+              {{ value.playbackRate }})</small
+            >
+          </h3>
+          <div
+            :key="`${animationPlaybackControlsToShow}-${partName}-play-controls`"
+            class="columns is-centered"
+          >
+            <div class="column is-narrow">
+              <div class="buttons is-centered has-addons">
+                <button
+                  class="button is-small is-primary"
+                  type="button"
+                  :disabled="value.playing"
+                  @click="
+                    playPartAnimation(animationPlaybackControlsToShow, partName)
+                  "
+                >
+                  Play
+                </button>
+
+                <button
+                  class="button is-small is-primary"
+                  type="button"
+                  :disabled="!value.playing"
+                  @click="
+                    pausePartAnimation(
+                      animationPlaybackControlsToShow,
+                      partName
+                    )
+                  "
+                >
+                  Pause
+                </button>
+              </div>
+            </div>
+
+            <div class="column is-narrow">
+              <div
+                :key="`${animationPlaybackControlsToShow}-${partName}-speed-controls`"
+                class="buttons is-centered"
+              >
+                <button
+                  class="button is-small is-primary"
+                  type="button"
+                  @click="
+                    decreasePartSpeed(animationPlaybackControlsToShow, partName)
+                  "
+                >
+                  &#x25BC; Speed
+                </button>
+
+                <button
+                  class="button is-small is-primary"
+                  type="button"
+                  :disabled="value.playbackRate === 1"
+                  @click="
+                    resetPartSpeed(animationPlaybackControlsToShow, partName)
+                  "
+                >
+                  Speed Reset
+                </button>
+
+                <button
+                  class="button is-small is-primary"
+                  type="button"
+                  @click="
+                    increasePartSpeed(animationPlaybackControlsToShow, partName)
+                  "
+                >
+                  &#x25B2; Speed
+                </button>
+              </div>
+            </div>
+          </div>
+        </template>
+      </div>
+    </section>
   </div>
 </template>
 
