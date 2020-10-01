@@ -1,25 +1,26 @@
 <template>
   <div class="css">
-    <h2>CSS Only</h2>
+    <h1 class="title">CSS Only</h1>
 
-    <p>The below animation is achieved with an SVG which has its elements grouped. CSS is then used to add keyframe animations and transitions.</p>
+    <p>
+      The below animation is achieved with an SVG which has its elements
+      grouped. CSS is then used to add keyframe animations and transitions.
+    </p>
 
-    <div class="animation-container">
-      <inline-svg
-        class="animation"
-        :src="require('@/assets/undraw_dog_walking.svg')"
-      />
-    </div>
+    <animation />
   </div>
 </template>
 
 <script>
+import Animation from '@/components/Animation'
+
 export default {
   name: 'CSS',
+
+  components: { Animation },
 }
 </script>
 
 <style lang="scss" scoped>
-  @import '~@/scss/common';
-  @import '~@/scss/animations';
+@import '~@/scss/common';
 </style>

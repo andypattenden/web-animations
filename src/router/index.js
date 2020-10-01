@@ -10,17 +10,17 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
   },
   {
     path: '/css',
     name: 'CSS',
-    component: Css
+    component: Css,
   },
   {
     path: '/css-waapi',
     name: 'CSS/WAAPI',
-    component: CssWaapi
+    component: CssWaapi,
   },
   {
     path: '*',
@@ -31,7 +31,7 @@ const routes = [
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes
+  routes,
 })
 
 export default router

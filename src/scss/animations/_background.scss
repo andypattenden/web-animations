@@ -1,4 +1,4 @@
-@keyframes background {
+@mixin background-animation {
   from {
     transform: translateX(100%);
   }
@@ -13,24 +13,56 @@
 #plant,
 #cloud--large,
 #cloud--small {
-  animation-name: background;
-  animation-timing-function: linear;
   animation-iteration-count: infinite;
+  animation-timing-function: linear;
 }
 
 #building {
   animation-duration: $walking-animation-speed * 80; // 60s
+
+  @keyframes background-building {
+    @include background-animation;
+  }
+
+  .animate-background--building & {
+    animation-name: background-building;
+  }
 }
 
-#tree{
+#tree {
   animation-duration: $walking-animation-speed * 20; // 15s
+
+  @keyframes background-tree {
+    @include background-animation;
+  }
+
+  .animate-background--tree & {
+    animation-name: background-tree;
+  }
 }
 
 #plant {
   animation-duration: $walking-animation-speed * 13.333333; // 10s
+
+  @keyframes background-plant {
+    @include background-animation;
+  }
+
+  .animate-background--plant & {
+    animation-name: background-plant;
+  }
 }
 
 #cloud {
+  .animate-background--clouds &--large,
+  .animate-background--clouds &--small {
+    animation-name: background-clouds;
+  }
+
+  @keyframes background-clouds {
+    @include background-animation;
+  }
+
   &--large {
     animation-duration: $walking-animation-speed * 160; // 120s
   }

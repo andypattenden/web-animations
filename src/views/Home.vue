@@ -1,7 +1,9 @@
 <template>
   <div class="home">
-    <h1>Web Animation Demo</h1>
-    <p>Investigating various techniques for adding animations to web with SVGs</p>
+    <h1 class="title">Web Animation Demo</h1>
+    <p>
+      Investigating various techniques for adding animations to web with SVGs
+    </p>
 
     <div class="animation-container">
       <inline-svg
@@ -13,12 +15,11 @@
 </template>
 
 <script>
-
 export default {
-  name: "Home",
-};
+  name: 'Home',
+}
 </script>
 
 <style lang="scss" scoped>
-  @import '~@/scss/common';
+@import '~@/scss/common';
 </style>

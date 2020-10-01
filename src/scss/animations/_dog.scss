@@ -1,17 +1,25 @@
 #dog {
-  @keyframes dog-leg-left {
-    from {
-      transform: rotateZ(20deg);
-    }
+  $tail-animation-speed: 0.5s;
+  $ear-animation-speed: 1s;
+  $self: &;
 
-    to {
-      transform: rotateZ(60deg) translateY(60%);
-    }
+  &__lead,
+  &__ear-right,
+  &__ear--left,
+  &__front-leg--left,
+  &__back-leg--left,
+  &__front-leg--right,
+  &__back-leg--right,
+  &__tail {
+    transform-box: fill-box;
+  }
+
+  &__tail,
+  &__lead {
+    transform-origin: bottom right;
   }
 
   &__lead {
-    transform-origin: bottom right;
-    transform-box: fill-box;
     animation: dog-lead $walking-animation-speed linear infinite alternate;
 
     @keyframes dog-lead {
@@ -28,8 +36,15 @@
 
   &__ear-right,
   &__ear--left {
+    animation-direction: alternate;
+    animation-duration: $ear-animation-speed;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
     transform-origin: center;
-    transform-box: fill-box;
+
+    .animate-dog--ears & {
+      animation-name: dog-ear;
+    }
 
     @keyframes dog-ear {
       from {
@@ -43,35 +58,40 @@
   }
 
   &__ear--left {
-    animation: dog-ear 1s ease-in-out infinite alternate-reverse;
-  }
-
-  &__ear-right {
-    animation: dog-ear 1s ease-in-out infinite alternate;
+    animation-direction: alternate-reverse;
   }
 
   &__front-leg--left,
   &__back-leg--left {
     transform-origin: top;
-    transform-box: fill-box;
-  }
 
-  &__front-leg--left {
-    animation: dog-leg-left $dog-walking-animation-speed linear infinite alternate;
+    .animate-dog--legs & {
+      animation: dog-leg-left $dog-walking-animation-speed linear infinite
+        alternate;
+    }
+
+    @keyframes dog-leg-left {
+      from {
+        transform: rotateZ(20deg);
+      }
+
+      to {
+        transform: rotateZ(60deg) translateY(60%);
+      }
+    }
   }
 
   &__back-leg--left {
-    animation: dog-leg-left $dog-walking-animation-speed linear infinite alternate-reverse;
-  }
-
-  &__front-leg--right,
-  &__back-leg--right {
-    transform-box: fill-box;
+    animation-direction: alternate-reverse;
   }
 
   &__front-leg--right {
     transform-origin: 30px 45px;
-    animation: dog-leg-right-front $dog-walking-animation-speed linear infinite alternate-reverse;
+
+    .animate-dog--legs & {
+      animation: dog-leg-right-front $dog-walking-animation-speed linear
+        infinite alternate-reverse;
+    }
 
     @keyframes dog-leg-right-front {
       from {
@@ -86,7 +106,11 @@
 
   &__back-leg--right {
     transform-origin: 30px 40px;
-    animation: dog-leg-right-back $dog-walking-animation-speed linear infinite alternate;
+
+    .animate-dog--legs & {
+      animation: dog-leg-right-back $dog-walking-animation-speed linear infinite
+        alternate;
+    }
 
     @keyframes dog-leg-right-back {
       from {
@@ -94,15 +118,15 @@
       }
 
       to {
-        transform: rotateZ(20deg) ;
+        transform: rotateZ(20deg);
       }
     }
   }
 
   &__tail {
-    transform-origin: bottom right;
-    transform-box: fill-box;
-    animation: dog-tail 0.5s infinite alternate;
+    .animate-dog--tail & {
+      animation: dog-tail $tail-animation-speed infinite alternate;
+    }
 
     @keyframes dog-tail {
       from {
@@ -110,7 +134,7 @@
       }
 
       to {
-        transform: rotateZ(10deg)
+        transform: rotateZ(10deg);
       }
     }
   }

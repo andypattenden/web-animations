@@ -1,15 +1,28 @@
 #man {
-  &__upper-body {
-    animation: man-body #{$walking-animation-speed / 2} linear infinite alternate-reverse;
+  &__upper-body,
+  &__arm--right,
+  &__arm--left,
+  &__foot--left,
+  &__foot--right,
+  &__leg-upper--left,
+  &__leg-lower--left,
+  &__leg-upper--right,
+  &__leg-lower--right {
     transform-box: fill-box;
+  }
+
+  &__upper-body {
+    .animate-man--body & {
+      animation: man-body #{$walking-animation-speed / 2} linear infinite alternate;
+    }
 
     @keyframes man-body {
       from {
-        transform: translateY(0);
+        transform: translateY(20px);
       }
 
       to {
-        transform: translateY(20px);
+        transform: translateY(0);
       }
     }
   }
@@ -17,9 +30,15 @@
   &__arm {
     &--right,
     &--left {
-      animation: man-arm $walking-animation-speed linear infinite alternate;
+      animation-direction: alternate;
+      animation-duration: $walking-animation-speed;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
       transform-origin: 30px 30px;
-      transform-box: fill-box;
+
+      .animate-man--arms & {
+        animation-name: man-arm;
+      }
     }
 
     &--left {
@@ -37,14 +56,13 @@
     }
   }
 
-  &__foot--left,
-  &__foot--right {
-    transform-box: fill-box;
-  }
-
   &__foot--right {
     transform-origin: top left;
-    animation: man-foot-right $walking-animation-speed linear infinite alternate;
+
+    .animate-man--legs & {
+      animation: man-foot-right $walking-animation-speed linear infinite
+        alternate;
+    }
 
     @keyframes man-foot-right {
       from {
@@ -82,47 +100,57 @@
     &-upper--right,
     &-lower--right {
       transform-origin: top;
-      transform-box: fill-box;
     }
 
     // Right leg
     &-upper--right {
       transform-origin: 50px 20px;
-      animation: man-upper-leg-right $walking-animation-speed $leg-timing infinite alternate-reverse;
 
-      @keyframes man-upper-leg-right {
+      .animate-man--legs & {
+        animation: man-leg-upper-right $walking-animation-speed $leg-timing
+          infinite alternate;
+      }
+
+      @keyframes man-leg-upper-right {
         from {
-          transform: rotateZ(20deg);
+          transform: rotateZ(-10deg);
         }
 
         to {
-          transform: rotateZ(-10deg);
+          transform: rotateZ(20deg);
         }
       }
     }
 
     &-lower--right {
-      transform-origin: 80% 40px ;
-      animation: man-lower-leg-right $walking-animation-speed $leg-timing infinite alternate-reverse;
+      transform-origin: 80% 40px;
 
-      @keyframes man-lower-leg-right {
+      .animate-man--legs & {
+        animation: man-leg-lower-right $walking-animation-speed $leg-timing
+          infinite alternate;
+      }
+
+      @keyframes man-leg-lower-right {
         from {
-          transform: rotateZ(-15deg) translate(-20px, 0px);
+          transform: rotateZ(-70deg) translate(35px, 40px);
         }
 
         to {
-          transform: rotateZ(-70deg) translate(35px, 40px);
+          transform: rotateZ(-15deg) translate(-20px, 0px);
         }
       }
     }
 
-
     // Left Leg
     &-upper--left {
       transform-origin: 25px 20px;
-      animation: man-upper-leg-left $walking-animation-speed $leg-timing infinite alternate;
 
-      @keyframes man-upper-leg-left {
+      .animate-man--legs & {
+        animation: man-leg-upper-left $walking-animation-speed $leg-timing
+          infinite alternate;
+      }
+
+      @keyframes man-leg-upper-left {
         from {
           transform: rotateZ(20deg);
         }
@@ -135,9 +163,13 @@
 
     &-lower--left {
       transform-origin: 33px 10px;
-      animation: man-lower-leg-left $walking-animation-speed $leg-timing infinite alternate;
 
-      @keyframes man-lower-leg-left {
+      .animate-man--legs & {
+        animation: man-leg-lower-left $walking-animation-speed $leg-timing
+          infinite alternate;
+      }
+
+      @keyframes man-leg-lower-left {
         from {
           transform: rotateZ(40deg) translateX(-13px);
         }

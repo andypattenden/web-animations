@@ -1,29 +1,9 @@
-$walking-animation-speed: 0.75s;
-$dog-walking-animation-speed: $walking-animation-speed * 0.33333333;
+$footer-background-color: #fff;
+$footer-padding: 1rem;
 
-.animation-container {
-  position: relative;
-  width: 100%;
-  height: auto;
-  max-width: 768px;
-  margin: 0 auto;
+@import "bulma/bulma";
+@import "form";
 
-  .playback-rate {
-    position: absolute;
-    right: 1em;
-    top: 1em;
-  }
-}
-
-::v-deep {
-  .animation {
-    background: #ddedfd;
-    width: 100%;
-    height: auto;
-  }
-
-  #dog__tongue,
-  #man__sweat {
-    display: none;
-  }
+p {
+  margin-bottom: 1em;
 }

@@ -1,5 +1,8 @@
+$walking-animation-speed: 0.75s;
+$dog-walking-animation-speed: $walking-animation-speed * 0.33333333;
+
 ::v-deep {
-  @import  'animations/dog';
-  @import  'animations/man';
-  @import 'animations/background';
+  @import "animations/dog";
+  @import "animations/man";
+  @import "animations/background";
 }
