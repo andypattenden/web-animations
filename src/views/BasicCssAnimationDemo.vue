@@ -5,12 +5,15 @@
       <h2 class="subtitle">Animating SVGs using CSS</h2>
     </header>
 
-    <p>
-      The animations below are achieved using pure
-      <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations"
-        >CSS animations</a
-      >. All animations play automatically and loop infinitely.
-    </p>
+    <div class="columns is-centered">
+      <p class="column is-8-desktop is-10-tablet">
+        The animations below are achieved using pure
+        <a
+          href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations"
+          >CSS animations</a
+        >. All animations play automatically and loop infinitely.
+      </p>
+    </div>
 
     <section class="section is-medium has-text-centered">
       <h2 class="title">Campfire</h2>

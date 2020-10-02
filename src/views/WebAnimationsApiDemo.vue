@@ -5,29 +5,33 @@
       <h2 class="subtitle">Adding interactivity to animated elements</h2>
     </header>
 
-    <p>
-      Interactivity can be added to the
-      <router-link to="/css-animation-demo">CSS animation</router-link>
-      through the use of the
-      <a
-        href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API"
-        >Web Animations API (WAAPI)</a
-      >. We can provide users with even more control over animations.
-      Particularly those with vestibular disorders, instead of having to disable
-      animations completely, they can slow them down.
-    </p>
+    <div class="columns is-centered">
+      <div class="column is-8-desktop is-10-tablet">
+        <p>
+          Interactivity can be added to the
+          <router-link to="/css-animation-demo">CSS animation</router-link>
+          through the use of the
+          <a
+            href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API"
+            >Web Animations API (WAAPI)</a
+          >. We can provide users with even more control over animations.
+          Particularly those with vestibular disorders, instead of having to
+          disable animations completely, they can slow them down.
+        </p>
 
-    <p>
-      When toggling the CSS classes to enable/disable the animations, the
-      animation will jump back to its start. When we start/stop animations using
-      WAAPI, the animation will continue from where it was stopped without
-      jumping.
-    </p>
+        <p>
+          When toggling the CSS classes to enable/disable the animations, the
+          animation will jump back to its start. When we start/stop animations
+          using WAAPI, the animation will continue from where it was stopped
+          without jumping.
+        </p>
 
-    <p>
-      When the animation is sped up, the man and dog get hot. They will slow
-      down to their original speed after a short time
-    </p>
+        <p>
+          When the animation is sped up, the man and dog get hot. They will slow
+          down to their original speed after a short time
+        </p>
+      </div>
+    </div>
 
     <section class="section has-text-centered">
       <dog-walking-animation

@@ -8,23 +8,27 @@
       </h2>
     </header>
 
-    <p>
-      If we have a long page with lots of animations, we might only want to play
-      them when a user scrolls to them. This allows us to ensure that a user
-      will see the animation from the start rather than part way through. It
-      also means that the browser is not unnecessarily processing animations
-      which can't be seen.
-    </p>
+    <div class="columns is-centered">
+      <div class="column is-8-desktop is-10-tablet">
+        <p>
+          If we have a long page with lots of animations, we might only want to
+          play them when a user scrolls to them. This allows us to ensure that a
+          user will see the animation from the start rather than part way
+          through. It also means that the browser is not unnecessarily
+          processing animations which can't be seen.
+        </p>
 
-    <p>
-      For the animations below, we are using the
-      <a
-        href="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API"
-        >Intersection Observer API</a
-      >
-      and WAAPI to play animations when they are fully visible in the browser
-      viewport.
-    </p>
+        <p>
+          For the animations below, we are using the
+          <a
+            href="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API"
+            >Intersection Observer API</a
+          >
+          and WAAPI to play animations when they are fully visible in the
+          browser viewport.
+        </p>
+      </div>
+    </div>
 
     <section class="section is-medium has-text-centered">
       <h2 class="title">Campfire</h2>
