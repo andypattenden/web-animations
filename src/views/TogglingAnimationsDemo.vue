@@ -1,7 +1,7 @@
 <template>
   <div class="css-animation-demo">
     <header class="has-text-centered">
-      <h1 class="title">Toggling CSS Animation</h1>
+      <h1 class="title">Toggling CSS Animations</h1>
       <h2 class="subtitle">Toggling CSS Animations using classes</h2>
     </header>
 
