@@ -33,7 +33,10 @@
     </div>
 
     <footer class="footer has-text-centered">
-      <p class="is-size-7">
+      by <a href="https://www.andypattenden.co.uk">Andy Pattenden</a>
+      <p class="is-size-7 has-text-grey">
+        Source code licensed
+        <a href="https://opensource.org/licenses/mit-license.php">MIT</a><br />
         SVG images from <a href="https://undraw.io">undraw.io</a>
       </p>
     </footer>
