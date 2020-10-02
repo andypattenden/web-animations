@@ -237,9 +237,37 @@ export default {
     },
   },
 
+  watch: {
+    manWalkingPast() {
+      this.resetManAndDogAnimations()
+    },
+
+    dogWalkingPast() {
+      this.resetManAndDogAnimations()
+    },
+  },
+
   methods: {
     handleLoaded() {
       this.$emit('svg-loaded')
+    },
+
+    /**
+     * Reset the dog and man animations so that they always appear in sync when
+     * walking together
+     */
+    async resetManAndDogAnimations() {
+      await this.$nextTick()
+
+      document.getAnimations().forEach((animation) => {
+        if (
+          animation.animationName &&
+          (animation.animationName.startsWith('man') ||
+            animation.animationName.startsWith('dog'))
+        ) {
+          animation.startTime = 0
+        }
+      })
     },
   },
 }

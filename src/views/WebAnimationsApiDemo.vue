@@ -242,8 +242,6 @@ export default {
   data() {
     return {
       animationPlaybackControlsToShow: null,
-      dogWalkingPast: false,
-      manWalkingPast: false,
       playbackRate: 1,
       maxPlaybackRate: 6,
       minPlaybackRate: 0.5,
@@ -480,23 +478,6 @@ export default {
       }
 
       animation.play()
-    },
-
-    /**
-     * Reset the dog and man animations so that they always appear in sync when
-     * walking together
-     */
-    async resetManAndDogAnimations() {
-      await this.$nextTick()
-
-      document.getAnimations().forEach((animation) => {
-        if (
-          animation.animationName.startsWith('man') ||
-          animation.animationName.startsWith('dog')
-        ) {
-          animation.startTime = 0
-        }
-      })
     },
 
     /**
