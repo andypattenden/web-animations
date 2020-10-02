@@ -27,6 +27,7 @@
               'animate-man--body': animateManBody,
             }"
             :src="require('@/assets/undraw_dog_walking.svg')"
+            @loaded="handleLoaded"
           />
         </div>
 
@@ -229,6 +230,12 @@ export default {
       return this.playbackRate <= this.minPlaybackrate
     },
   },
+
+  methods: {
+    handleLoaded() {
+      this.$emit('svg-loaded')
+    },
+  },
 }
 </script>
 
@@ -315,16 +322,20 @@ export default {
       animation-iteration-count: infinite;
       animation-timing-function: linear;
       opacity: 0;
+      scale: 0;
       transform-box: fill-box;
       transform-origin: top left;
+      transition: opacity 0.5s, scale 0.2s;
 
       @keyframes dog-tongue {
         from {
-          transform: rotateZ(0deg) scaleY(0.2);
+          scale: 1 0.2;
+          transform: rotateZ(0deg);
         }
 
         to {
-          transform: rotateZ(20deg) scaleY(1);
+          scale: 1;
+          transform: rotateZ(20deg);
         }
       }
     }

@@ -1,7 +1,19 @@
 #dog {
   $tail-animation-speed: 0.5s;
   $ear-animation-speed: 1s;
-  $self: &;
+
+  &:hover {
+    cursor: pointer;
+
+    #dog__tail {
+      animation-duration: 0.1s;
+    }
+
+    #dog__tongue {
+      opacity: 1;
+      scale: 1;
+    }
+  }
 
   &__lead,
   &__ear-right,
@@ -63,11 +75,15 @@
 
   &__front-leg--left,
   &__back-leg--left {
+    animation-direction: alternate;
+
+    animation-duration: $dog-walking-animation-speed;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
     transform-origin: top;
 
     .animate-dog--legs & {
-      animation: dog-leg-left $dog-walking-animation-speed linear infinite
-        alternate;
+      animation-name: dog-leg-left;
     }
 
     @keyframes dog-leg-left {

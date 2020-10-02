@@ -29,6 +29,7 @@
       :playback-rate="playbackRate"
       :min-playback-rate="minPlaybackRate"
       :max-playback-rate="maxPlaybackRate"
+      @svg-loaded="handleSvgLoaded"
     />
 
     <section class="section">
@@ -43,7 +44,7 @@
               class="button is-small is-primary"
               type="button"
               :disabled="playing"
-              @click="playAnimation"
+              @click="playAllAnimations"
             >
               Play
             </button>
@@ -52,7 +53,7 @@
               class="button is-small is-primary"
               type="button"
               :disabled="!playing"
-              @click="pauseAnimation"
+              @click="pauseAllAnimations"
             >
               Pause
             </button>
@@ -64,7 +65,7 @@
               class="button is-small is-primary"
               type="button"
               :disabled="minPlaybackRateReached"
-              @click="decreaseSpeed"
+              @click="decreaseAllAnimationsSpeed"
             >
               &#x25BC; Speed
             </button>
@@ -72,8 +73,8 @@
             <button
               class="button is-small is-primary"
               type="button"
-              :disabled="playbackRate <= 1"
-              @click="resetSpeed"
+              :disabled="playbackRate === 1"
+              @click="resetAllAnimationsSpeed"
             >
               Speed Reset
             </button>
@@ -82,7 +83,7 @@
               class="button is-small is-primary"
               type="button"
               :disabled="maxPlaybackRateReached"
-              @click="increaseSpeed"
+              @click="increaseAllAnimationsSpeed"
             >
               &#x25B2; Speed
             </button>
@@ -103,11 +104,11 @@
             >
               <option disabled>Choose an option</option>
               <option
-                v-for="(item, itemName) in animationStates"
-                :key="itemName"
-                :value="itemName"
+                v-for="(figure, figureName) in animationStates"
+                :key="figureName"
+                :value="figureName"
               >
-                {{ itemName | capitalise }}
+                {{ figureName | capitalise }}
               </option>
             </select>
           </div>
@@ -244,6 +245,11 @@ export default {
       decayInterval: null,
       playing: true,
       dogPlaying: true,
+      man: null,
+      dog: null,
+      dogElements: null,
+      dogGrowAnimation: null,
+      manShrinkAnimation: null,
       animationStates: {
         background: {
           tree: {
@@ -300,18 +306,38 @@ export default {
   },
 
   computed: {
+    /**
+     * Whether the animation is running fast
+     *
+     * @returns {boolean} Is the animation running fast
+     */
     animationFast() {
       return this.playbackRate > 3
     },
 
+    /**
+     * Whether the animation is running at its fastest
+     *
+     * @returns {boolean} Is the animation running at its fastest
+     */
     animationFastest() {
       return this.playbackRate > 4
     },
 
+    /**
+     * Whether the main animation has reached the maximum playback rate
+     *
+     * @returns {boolean} Is the animation running at its max rate
+     */
     maxPlaybackRateReached() {
       return this.playbackRate >= this.maxPlaybackRate
     },
 
+    /**
+     * Whether the main animation has reached the minimum playback rate
+     *
+     * @returns {boolean} Is the animation running at its min rate
+     */
     minPlaybackRateReached() {
       return this.playbackRate <= this.minPlaybackRate
     },
@@ -327,19 +353,137 @@ export default {
     },
 
     manWalkingPast() {
-      this.reset()
+      this.resetManAndDogAnimations()
     },
 
     dogWalkingPast() {
-      this.reset()
+      this.resetManAndDogAnimations()
     },
   },
 
-  created() {},
-
   methods: {
-    async reset() {
+    /**
+     * Handle the SVG being loaded
+     * Sets up animations and event handlers on the SVG
+     */
+    handleSvgLoaded() {
+      this.dog = document.getElementById('dog')
+
+      this.dogGrowAnimation = this.setupAnimation(
+        this.dog,
+        [
+          { transform: 'scale(1)' },
+          { transform: 'translate(-40%, -90%) scale(2)' },
+        ],
+        {
+          duration: 4000,
+          easing: 'ease-in-out',
+          fill: 'both',
+        },
+        () => this.reverseAnimation(this.dogGrowAnimation)
+      )
+
+      this.setupEventListeners(this.dog, this.dogGrowAnimation)
+    },
+
+    /**
+     * Setup animations on an element
+     *
+     * @param {HTMLElement} element element to bind the animations to
+     * @param {object[]} keyframes the keyframes to animate
+     * @param {object} options the options for the animation
+     * @param {Function} [finishHandler] a function to run when the animation has finished
+     *
+     * @returns {Animation} the animation
+     */
+    setupAnimation(element, keyframes, options, finishHandler = null) {
+      const animation = element.animate(keyframes, options)
+
+      if (finishHandler && typeof finishHandler === 'function') {
+        animation.onfinish = finishHandler
+      }
+
+      animation.pause()
+
+      return animation
+    },
+
+    /**
+     * Setup event listeners to run animations on an element
+     *
+     * @param {HTMLElement} element the element to attach event listeners to
+     * @param {Animation} animation the animation to run on the events
+     */
+    setupEventListeners(element, animation) {
+      element.addEventListener(
+        'mousedown',
+        () => this.playAnimation(animation),
+        false
+      )
+      element.addEventListener(
+        'touchstart',
+        () => this.playAnimation(animation),
+        false
+      )
+      element.addEventListener(
+        'mouseup',
+        () => this.pauseAnimation(animation),
+        false
+      )
+      element.addEventListener(
+        'mouseout',
+        () => this.pauseAnimation(animation),
+        false
+      )
+      element.addEventListener(
+        'touchend',
+        () => this.pauseAnimation(animation),
+        false
+      )
+    },
+
+    /**
+     * Plays the passed in animation
+     *
+     * @param {Animation} animation the animation to play
+     */
+    playAnimation(animation) {
+      // Hide the dog lead so that it doesn't look odd when the players change size
+      this.dog.querySelector('#dog__lead').style = 'display: none'
+      animation.play()
+    },
+
+    /**
+     * Pause the passed animation
+     *
+     * @param {Animation} animation the animation to pause
+     */
+    pauseAnimation(animation) {
+      animation.pause()
+    },
+
+    /**
+     * Reverses the play direction of an animation
+     *
+     * @param {Animation} animation the animation to reverse
+     */
+    reverseAnimation(animation) {
+      if (animation.playbackRate < 0) {
+        animation.playbackRate = 1
+      } else {
+        animation.playbackRate = -1
+      }
+
+      animation.play()
+    },
+
+    /**
+     * Reset the dog and man animations so that they always appear in sync when
+     * walking together
+     */
+    async resetManAndDogAnimations() {
       await this.$nextTick()
+
       document.getAnimations().forEach((animation) => {
         if (
           animation.animationName.startsWith('man') ||
@@ -349,17 +493,29 @@ export default {
         }
       })
     },
-    pauseAnimation() {
+
+    /**
+     * Pause all animations
+     */
+    pauseAllAnimations() {
       document.getAnimations().forEach((animation) => animation.pause())
       this.playing = false
     },
 
-    playAnimation() {
+    /**
+     * Play all animations
+     */
+    playAllAnimations() {
       document.getAnimations().forEach((animation) => animation.play())
       this.playing = true
     },
 
-    increaseSpeed() {
+    /**
+     * Increases the speed of all animations
+     *
+     * Also sets an interval to slowy reduce the speed back to normal
+     */
+    increaseAllAnimationsSpeed() {
       this.playbackRate = Math.round(this.playbackRate * 1.2 * 10) / 10
 
       // Set an interval to reduce speed back down to 1
@@ -376,67 +532,118 @@ export default {
       }
     },
 
-    decreaseSpeed() {
+    /**
+     * Decreases the speed of all animations
+     */
+    decreaseAllAnimationsSpeed() {
       this.playbackRate = Math.round(this.playbackRate * 0.9 * 10) / 10
     },
 
-    resetSpeed() {
+    /**
+     * Reset the speed of all the animations
+     */
+    resetAllAnimationsSpeed() {
       this.playbackRate = 1
     },
 
-    pausePartAnimation(item, part) {
+    /**
+     * Pause part of an animated figure
+     *
+     * @param {string} figure the figure who we want to update
+     * @param {string} part the part of the figure to pause
+     */
+    pausePartAnimation(figure, part) {
       document.getAnimations().forEach((animation) => {
-        if (animation.animationName.startsWith(`${item}-${part}`)) {
+        if (
+          animation.animationName &&
+          animation.animationName.startsWith(`${figure}-${part}`)
+        ) {
           animation.pause()
         }
       })
 
-      this.animationStates[item][part].playing = false
+      this.animationStates[figure][part].playing = false
     },
 
-    playPartAnimation(item, part) {
+    /**
+     * Play part of an animated figure
+     *
+     * @param {string} figure the figure who we want to update
+     * @param {string} part the part of the figure to pause
+     */
+    playPartAnimation(figure, part) {
       document.getAnimations().forEach((animation) => {
-        if (animation.animationName.startsWith(`${item}-${part}`)) {
+        if (
+          animation.animationName &&
+          animation.animationName.startsWith(`${figure}-${part}`)
+        ) {
           animation.play()
         }
       })
 
-      this.animationStates[item][part].playing = true
+      this.animationStates[figure][part].playing = true
     },
 
-    increasePartSpeed(item, part) {
-      const animationState = this.animationStates[item][part]
+    /**
+     * Increase the animation speed of part of an animated figure
+     *
+     * @param {string} figure the figure who we want to update
+     * @param {string} part the part of the figure to pause
+     */
+    increasePartSpeed(figure, part) {
+      const animationState = this.animationStates[figure][part]
 
       animationState.playbackRate =
         Math.round(animationState.playbackRate * 1.2 * 10) / 10
 
       document.getAnimations().forEach((animation) => {
-        if (animation.animationName.startsWith(`${item}-${part}`)) {
+        if (
+          animation.animationName &&
+          animation.animationName.startsWith(`${figure}-${part}`)
+        ) {
           animation.updatePlaybackRate(animationState.playbackRate)
         }
       })
     },
 
-    decreasePartSpeed(item, part) {
-      const animationState = this.animationStates[item][part]
+    /**
+     * Decrease the animation speed of part of an animated figure
+     *
+     * @param {string} figure the figure who we want to update
+     * @param {string} part the part of the figure to pause
+     */
+    decreasePartSpeed(figure, part) {
+      const animationState = this.animationStates[figure][part]
 
       animationState.playbackRate =
         Math.round(animationState.playbackRate * 0.9 * 10) / 10
 
       document.getAnimations().forEach((animation) => {
-        if (animation.animationName.startsWith(`${item}-${part}`)) {
+        if (
+          animation.animationName &&
+          animation.animationName.startsWith(`${figure}-${part}`)
+        ) {
           animation.updatePlaybackRate(animationState.playbackRate)
         }
       })
     },
 
-    resetPartSpeed(item, part) {
-      const animationState = this.animationStates[item][part]
+    /**
+     * Reset the animation speed of part of an animated figure
+     *
+     * @param {string} figure the figure who we want to update
+     * @param {string} part the part of the figure to pause
+     */
+    resetPartSpeed(figure, part) {
+      const animationState = this.animationStates[figure][part]
 
       animationState.playbackRate = 1
 
       document.getAnimations().forEach((animation) => {
-        if (animation.animationName.startsWith(`${item}-${part}`)) {
+        if (
+          animation.animationName &&
+          animation.animationName.startsWith(`${figure}-${part}`)
+        ) {
           animation.updatePlaybackRate(animationState.playbackRate)
         }
       })
