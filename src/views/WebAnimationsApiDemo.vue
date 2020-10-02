@@ -1,15 +1,20 @@
 <template>
   <div class="css-waapi">
-    <h1 class="title">CSS &amp; Web Animations API</h1>
+    <header class="has-text-centered">
+      <h1 class="title">Web Animations API</h1>
+      <h2 class="subtitle">Adding interactivity to animated elements</h2>
+    </header>
 
     <p>
-      This takes the animation from the
-      <router-link to="css">CSS example</router-link> and adds functionality via
-      the
+      Interactivity can be added to the
+      <router-link to="/css-animation-demo">CSS animation</router-link>
+      through the use of the
       <a
         href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API"
         >Web Animations API (WAAPI)</a
-      >
+      >. We can provide users with even more control over animations.
+      Particularly those with vestibular disorders, instead of having to disable
+      animations completely, they can slow them down.
     </p>
 
     <p>
@@ -24,15 +29,15 @@
       down to their original speed after a short time
     </p>
 
-    <animation
-      class="mb-5"
-      :playback-rate="playbackRate"
-      :min-playback-rate="minPlaybackRate"
-      :max-playback-rate="maxPlaybackRate"
-      @svg-loaded="handleSvgLoaded"
-    />
+    <section class="section has-text-centered">
+      <dog-walking-animation
+        class="mb-5"
+        :playback-rate="playbackRate"
+        :min-playback-rate="minPlaybackRate"
+        :max-playback-rate="maxPlaybackRate"
+        @svg-loaded="handleSvgLoaded"
+      />
 
-    <section class="section">
       <h2 class="title is-5">Playback Controls</h2>
       <p class="subtitle is-7">
         Manipulate the animation through the Web Animations API
@@ -217,12 +222,12 @@
 </template>
 
 <script>
-import Animation from '@/components/Animation'
+import DogWalkingAnimation from '@/components/DogWalkingAnimation'
 
 export default {
-  name: 'CSSWaapi',
+  name: 'WebAnimationsApiDemo',
 
-  components: { Animation },
+  components: { DogWalkingAnimation },
 
   filters: {
     capitalise: function (value) {

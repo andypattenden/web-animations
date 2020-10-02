@@ -1,0 +1,36 @@
+#wheel--front,
+#wheel--back {
+  animation: wheel 10s linear infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+
+  @keyframes wheel {
+    from {
+      transform: rotateZ(0deg);
+    }
+
+    to {
+      transform: rotateZ(360deg);
+    }
+  }
+}
+
+#rock1,
+#rock2 {
+  animation: rock 15s linear infinite;
+  transform-origin: center;
+
+  @keyframes rock {
+    from {
+      transform: translateX(100%);
+    }
+
+    to {
+      transform: translateX(-100%);
+    }
+  }
+}
+
+#rock2 {
+  animation-duration: 20s;
+}

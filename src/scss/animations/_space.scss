@@ -1,0 +1,112 @@
+#astronaut {
+  animation: astronaut 10s ease-in-out infinite alternate;
+  transform-box: fill-box;
+  transform-origin: center;
+
+  @keyframes astronaut {
+    from {
+      transform: rotateZ(-10deg) translate(-20px, -20px);
+    }
+
+    to {
+      transform: rotateZ(10deg) translate(20px, 20px);
+    }
+  }
+}
+
+#moon {
+  animation: moon 45s ease-in-out infinite alternate;
+  transform-box: fill-box;
+  transform-origin: center;
+
+  @keyframes moon {
+    from {
+      transform: rotateZ(-90deg);
+    }
+
+    to {
+      transform: rotateZ(90deg);
+    }
+  }
+}
+
+#star1,
+#star2,
+#star3,
+#star4,
+#star5,
+#planet1,
+#planet2,
+#planet3 {
+  animation: star 10s ease-in-out infinite alternate;
+
+  @keyframes star {
+    0% {
+      opacity: 0;
+    }
+
+    25%,
+    100% {
+      opacity: 1;
+    }
+  }
+}
+
+#star3 {
+  animation-delay: 1s;
+}
+#star4 {
+  animation-delay: 2s;
+}
+#star1 {
+  animation-delay: 3s;
+}
+
+#star2 {
+  animation-delay: 4s;
+}
+#star5 {
+  animation-delay: 8s;
+}
+
+#planet1 {
+  animation-delay: 3s;
+}
+
+#planet2 {
+  animation-delay: 6s;
+}
+
+#planet3 {
+  animation-delay: 10s;
+}
+
+#comet1,
+#comet2 {
+  animation: comet 10s 2s ease-in infinite;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: top right;
+
+  @keyframes comet {
+    0% {
+      opacity: 1;
+      transform: translate(200px, -200px) scale(0);
+    }
+
+    10% {
+      transform: translate(-200px, 200px) scale(1);
+    }
+
+    15%,
+    100% {
+      opacity: 0;
+      transform: translate(-200px, 200px) scale(0);
+      transform-origin: bottom left;
+    }
+  }
+}
+
+#comet2 {
+  animation-delay: 6s;
+}

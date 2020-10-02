@@ -1,0 +1,99 @@
+#indicator {
+  animation: progress-indicator 10s linear infinite;
+  transform-box: fill-box;
+  transform-origin: bottom center;
+
+  @keyframes progress-indicator {
+    0%,
+    5% {
+      transform: translateX(-250px);
+    }
+
+    15%,
+    20% {
+      transform: translateX(-126.4px);
+    }
+
+    30%,
+    35% {
+      transform: translateX(-2.8px);
+    }
+
+    45%,
+    50% {
+      transform: translateX(120.8px);
+    }
+
+    60%,
+    65% {
+      transform: translateX(244.4px);
+    }
+
+    75%,
+    80% {
+      transform: translateX(368px);
+    }
+
+    100% {
+      transform: translateX(-250px);
+    }
+  }
+}
+
+#step1,
+#step2,
+#step3,
+#step4,
+#step5,
+#step6 {
+  path {
+    animation: step 10s linear infinite;
+    fill: #e6e6e6;
+  }
+}
+
+#step2 {
+  path {
+    animation-delay: 1.5s;
+  }
+}
+
+#step3 {
+  path {
+    animation-delay: 3s;
+  }
+}
+
+#step4 {
+  path {
+    animation-delay: 4.5s;
+  }
+}
+
+#step5 {
+  path {
+    animation-delay: 6s;
+  }
+}
+
+#step6 {
+  path {
+    animation-delay: 7.5s;
+  }
+}
+
+@keyframes step {
+  0% {
+    fill: #e6e6e6;
+  }
+
+  2%,
+  15% {
+    fill: #6c63ff;
+  }
+
+  17.5%,
+  100% {
+    fill: #e6e6e6;
+  }
+}

@@ -4,6 +4,17 @@ $footer-padding: 1rem;
 @import "bulma/bulma";
 @import "form";
 
+::v-deep {
+  .animation {
+    height: auto;
+    width: 100%;
+  }
+}
+
 p {
   margin-bottom: 1em;
+}
+
+header {
+  margin-bottom: 2em;
 }

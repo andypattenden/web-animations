@@ -1,15 +1,29 @@
 <template>
-  <div id="app" class="has-text-centered">
+  <div id="app" class="px-4">
     <nav class="nav">
-      <ul class="columns is-centered is-mobile">
-        <li class="column is-narrow"><router-link to="/">Home</router-link></li>
+      <ul class="columns is-centered">
         <li class="column is-narrow">
-          <router-link to="/css">CSS</router-link>
+          <router-link to="/">Home</router-link>
         </li>
         <li class="column is-narrow">
-          <router-link to="/css-waapi"
-            >CSS &amp; Web Animations API</router-link
+          <router-link to="/basic-css-animation-demo"
+            >CSS Animations</router-link
           >
+        </li>
+        <li class="column is-narrow">
+          <router-link to="/toggling-animations-demo">
+            Toggling CSS Animations
+          </router-link>
+        </li>
+        <li class="column is-narrow">
+          <router-link to="/web-animations-api-demo">
+            Web Animations API
+          </router-link>
+        </li>
+        <li class="column is-narrow">
+          <router-link to="/intersection-observer-api-demo">
+            Intersection Observer API
+          </router-link>
         </li>
       </ul>
     </nav>
@@ -18,7 +32,7 @@
       <router-view />
     </div>
 
-    <footer class="footer">
+    <footer class="footer has-text-centered">
       <p class="is-size-7">
         SVG images from <a href="https://undraw.io">undraw.io</a>
       </p>
@@ -30,6 +44,7 @@
 @import '~@/scss/common';
 
 .nav {
+  margin-bottom: 2em;
   padding: 1em;
 
   a {

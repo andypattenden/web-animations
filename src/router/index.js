@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home'
-import Css from '../views/Css'
-import CssWaapi from '../views/CssWaapi'
+import BasicCssAnimationDemo from '../views/BasicCssAnimationDemo'
+import TogglingAnimationsDemo from '../views/TogglingAnimationsDemo'
+import WebAnimationsApiDemo from '../views/WebAnimationsApiDemo'
+import IntersectionObserverApiDemo from '../views/IntersectionObserverApiDemo'
 
 Vue.use(VueRouter)
 
@@ -13,18 +15,28 @@ const routes = [
     component: Home,
   },
   {
-    path: '/css',
-    name: 'CSS',
-    component: Css,
+    path: '/basic-css-animation-demo',
+    name: 'CSS Animation Demo Page',
+    component: BasicCssAnimationDemo,
   },
   {
-    path: '/css-waapi',
-    name: 'CSS/WAAPI',
-    component: CssWaapi,
+    path: '/toggling-animations-demo',
+    name: 'Toggling Animation Demo Page',
+    component: TogglingAnimationsDemo,
+  },
+  {
+    path: '/web-animations-api-demo',
+    name: 'Web Animations API Demo Page',
+    component: WebAnimationsApiDemo,
+  },
+  {
+    path: '/intersection-observer-api-demo',
+    name: 'Intersection Observer Api Demo Page',
+    component: IntersectionObserverApiDemo,
   },
   {
     path: '*',
-    redirect: '/css',
+    redirect: '/',
   },
 ]
 

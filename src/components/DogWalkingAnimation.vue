@@ -37,137 +37,143 @@
             Toggle CSS classes to enable/disable animations
           </p>
 
-          <h4 class="subtitle is-6 mb-2">Background</h4>
-          <ul class="animation-toggles mb-5">
-            <li>
-              <label class="">
-                <input
-                  v-model="animateBackgroundTree"
-                  type="checkbox"
-                  class="switch"
-                />
-                Tree
-              </label>
-            </li>
-            <li>
-              <label class="">
-                <input
-                  v-model="animateBackgroundPlant"
-                  type="checkbox"
-                  class="switch"
-                />
-                Plant
-              </label>
-            </li>
-            <li>
-              <label class="">
-                <input
-                  v-model="animateBackgroundClouds"
-                  type="checkbox"
-                  class="switch"
-                />
-                Clouds
-              </label>
-            </li>
-            <li>
-              <label class="">
-                <input
-                  v-model="animateBackgroundBuilding"
-                  type="checkbox"
-                  class="switch"
-                />
-                Building
-              </label>
-            </li>
-          </ul>
-
-          <h4 class="subtitle is-6 mb-2">Dog</h4>
-          <ul class="animation-toggles mb-5">
-            <li>
-              <label class="">
-                <input
-                  v-model="dogWalkingPast"
-                  type="checkbox"
-                  class="switch"
-                />
-                Walks Past
-              </label>
-            </li>
-            <li>
-              <label class="">
-                <input
-                  v-model="animateDogLegs"
-                  type="checkbox"
-                  class="switch"
-                />
-                Legs
-              </label>
-            </li>
-            <li>
-              <label class="">
-                <input
-                  v-model="animateDogTail"
-                  type="checkbox"
-                  class="switch"
-                />
-                Tail
-              </label>
-            </li>
-            <li>
-              <label class="">
-                <input
-                  v-model="animateDogEars"
-                  type="checkbox"
-                  class="switch"
-                />
-                Ears
-              </label>
-            </li>
-          </ul>
-
-          <h4 class="subtitle is-6 mb-2">Man</h4>
-          <ul class="animation-toggles">
-            <li>
-              <label class="">
-                <input
-                  v-model="manWalkingPast"
-                  type="checkbox"
-                  class="switch"
-                />
-                Walks Past
-              </label>
-            </li>
-            <li>
-              <label class="">
-                <input
-                  v-model="animateManLegs"
-                  type="checkbox"
-                  class="switch"
-                />
-                Legs
-              </label>
-            </li>
-            <li>
-              <label class="">
-                <input
-                  v-model="animateManArms"
-                  type="checkbox"
-                  class="switch"
-                />
-                Arms
-              </label>
-            </li>
-            <li>
-              <label class="">
-                <input
-                  v-model="animateManBody"
-                  type="checkbox"
-                  class="switch"
-                />
-                Body
-              </label>
-            </li>
-          </ul>
+          <div class="columns is-mobile is-multiline">
+            <div class="column is-full-tablet is-full-desktop">
+              <h4 class="subtitle is-6 mb-2">Background</h4>
+              <ul class="animation-toggles">
+                <li>
+                  <label class="">
+                    <input
+                      v-model="animateBackgroundTree"
+                      type="checkbox"
+                      class="switch"
+                    />
+                    Tree
+                  </label>
+                </li>
+                <li>
+                  <label class="">
+                    <input
+                      v-model="animateBackgroundPlant"
+                      type="checkbox"
+                      class="switch"
+                    />
+                    Plant
+                  </label>
+                </li>
+                <li>
+                  <label class="">
+                    <input
+                      v-model="animateBackgroundClouds"
+                      type="checkbox"
+                      class="switch"
+                    />
+                    Clouds
+                  </label>
+                </li>
+                <li>
+                  <label class="">
+                    <input
+                      v-model="animateBackgroundBuilding"
+                      type="checkbox"
+                      class="switch"
+                    />
+                    Building
+                  </label>
+                </li>
+              </ul>
+            </div>
+            <div class="column is-full-tablet is-full-desktop">
+              <h4 class="subtitle is-6 mb-2">Dog</h4>
+              <ul class="animation-toggles">
+                <li>
+                  <label class="">
+                    <input
+                      v-model="dogWalkingPast"
+                      type="checkbox"
+                      class="switch"
+                    />
+                    Walks Past
+                  </label>
+                </li>
+                <li>
+                  <label class="">
+                    <input
+                      v-model="animateDogLegs"
+                      type="checkbox"
+                      class="switch"
+                    />
+                    Legs
+                  </label>
+                </li>
+                <li>
+                  <label class="">
+                    <input
+                      v-model="animateDogTail"
+                      type="checkbox"
+                      class="switch"
+                    />
+                    Tail
+                  </label>
+                </li>
+                <li>
+                  <label class="">
+                    <input
+                      v-model="animateDogEars"
+                      type="checkbox"
+                      class="switch"
+                    />
+                    Ears
+                  </label>
+                </li>
+              </ul>
+            </div>
+            <div class="column is-full-tablet is-full-desktop">
+              <h4 class="subtitle is-6 mb-2">Man</h4>
+              <ul class="animation-toggles">
+                <li>
+                  <label class="">
+                    <input
+                      v-model="manWalkingPast"
+                      type="checkbox"
+                      class="switch"
+                    />
+                    Walks Past
+                  </label>
+                </li>
+                <li>
+                  <label class="">
+                    <input
+                      v-model="animateManLegs"
+                      type="checkbox"
+                      class="switch"
+                    />
+                    Legs
+                  </label>
+                </li>
+                <li>
+                  <label class="">
+                    <input
+                      v-model="animateManArms"
+                      type="checkbox"
+                      class="switch"
+                    />
+                    Arms
+                  </label>
+                </li>
+                <li>
+                  <label class="">
+                    <input
+                      v-model="animateManBody"
+                      type="checkbox"
+                      class="switch"
+                    />
+                    Body
+                  </label>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -176,7 +182,7 @@
 
 <script>
 export default {
-  name: 'Animation',
+  name: 'DogWalkingAnimation',
 
   props: {
     playbackRate: {
