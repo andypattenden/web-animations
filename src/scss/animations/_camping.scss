@@ -1,28 +1,45 @@
 #flame--outer,
-#flame-inner {
+#flame--inner {
   animation: flame-flicker 5s ease-in-out infinite alternate;
   transform-box: fill-box;
   transform-origin: bottom center;
+}
 
-  @keyframes flame-flicker {
+@keyframes flame-flicker {
+  0% {
+    transform: scaleY(1) rotateZ(-10deg);
+  }
+
+  33% {
+    transform: scale(0.9, 0.9);
+  }
+
+  66% {
+    transform: scale(1, 1.1) rotateZ(5deg);
+  }
+
+  100% {
+    transform: scale(0.9, 0.9) rotateZ(-5deg);
+  }
+}
+#flame--inner {
+  animation-duration: 4s;
+}
+
+#marshmallow {
+  animation: marshmallow 20s ease-in-out infinite;
+
+  @keyframes marshmallow {
     0% {
-      transform: scaleY(1) rotateZ(-5deg);
+      fill: #e6e6e6;
     }
 
-    33% {
-      transform: scale(0.9, 0.9);
-    }
-
-    66% {
-      transform: scale(1, 1.1) rotateZ(5deg);
+    95% {
+      fill: #aa6805;
     }
 
     100% {
-      transform: scale(0.9, 0.9) rotateZ(-5deg);
+      fill: #e6e6e6;
     }
   }
-}
-
-#flame-inner {
-  animation-duration: 4s;
 }

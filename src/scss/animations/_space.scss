@@ -45,7 +45,7 @@
       opacity: 0;
     }
 
-    25%,
+    2%,
     100% {
       opacity: 1;
     }
@@ -91,17 +91,17 @@
   @keyframes comet {
     0% {
       opacity: 1;
-      transform: translate(200px, -200px) scale(0);
+      transform: translate(300px, -300px) scale(0);
     }
 
     10% {
-      transform: translate(-200px, 200px) scale(1);
+      transform: translate(-300px, 300px) scale(1);
     }
 
     15%,
     100% {
       opacity: 0;
-      transform: translate(-200px, 200px) scale(0);
+      transform: translate(-300px, 300px) scale(0);
       transform-origin: bottom left;
     }
   }
