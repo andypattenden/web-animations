@@ -37,7 +37,7 @@
       <p class="is-size-7 has-text-grey">
         Source code licensed
         <a href="https://opensource.org/licenses/mit-license.php">MIT</a><br />
-        SVG images from <a href="https://undraw.io">undraw.io</a>
+        SVG images from <a href="https://undraw.co">undraw.co</a>
       </p>
     </footer>
   </div>
