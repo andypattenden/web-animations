@@ -513,7 +513,7 @@ export default {
         this.decayInterval = setInterval(() => {
           // Make sure the playback rate never falls below 1
           if (this.playbackRate > 1) {
-            this.decreaseSpeed()
+            this.decreaseAllAnimationsSpeed()
           } else {
             clearInterval(this.decayInterval)
             this.decayInterval = null
