@@ -16,7 +16,9 @@
         <a
           href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animated_properties"
           >can be animated</a
-        >. All animations loop infinitely using
+        >. The source SVGs from <a href="https://undraw.co/">undraw.co</a> have
+        been edited to group and name elements allowing easy selection with CSS.
+        All animations loop infinitely using
         <a
           href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-iteration-count"
           ><code>animation-iteration-count</code></a
