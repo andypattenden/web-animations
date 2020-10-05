@@ -7,11 +7,20 @@
 
     <div class="columns is-centered">
       <p class="column is-8-desktop is-10-tablet">
-        The animations below are achieved using pure
+        The animations below are achieved using
         <a
           href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations"
-          >CSS animations</a
-        >. All animations play automatically and loop infinitely.
+          >CSS keyframe animations</a
+        >
+        to update various properties which
+        <a
+          href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animated_properties"
+          >can be animated</a
+        >. All animations loop infinitely using
+        <a
+          href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-iteration-count"
+          ><code>animation-iteration-count</code></a
+        >.
       </p>
     </div>
 
@@ -28,8 +37,28 @@
 
         <div class="column has-text-left">
           <p>
-            This animation use simple transition animation to change the scale
-            and rotate the flames.
+            This animation uses a simple CSS
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform"
+            >
+              <code>transform</code>
+            </a>
+            animation to change the
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/scale"
+              ><code>scale</code></a
+            >
+            and
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/rotateZ"
+              ><code>rotateZ</code></a
+            >
+            CSS properties to create the illusion of the flames flickering.
+          </p>
+
+          <p>
+            The marshmallow colour is changed by updating the fill colour of the
+            SVG element.
           </p>
         </div>
       </div>
@@ -41,9 +70,31 @@
       <div class="columns is-vcentered">
         <div class="column has-text-left">
           <p>
-            This animation uses a simple transition animation to rotate the
-            wheels. The illusion of the background depth is acheived by
-            translating the rocks using different animation durations.
+            This animation uses a CSS
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform"
+            >
+              <code>transform</code>
+            </a>
+            on the
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/rotateZ"
+              ><code>rotateZ</code></a
+            >
+            CSS property to turn the wheels.
+          </p>
+          <p>
+            The illusion of the background depth is acheived by changing
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/translateX"
+              ><code>translateX</code></a
+            >
+            on the rocks using different
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-duration"
+              ><code>animation-duration</code></a
+            >
+            on each rock.
           </p>
         </div>
 
@@ -69,14 +120,48 @@
 
         <div class="column has-text-left">
           <p>
-            Astronaut appears to float using rotation and translation animation.
+            Here, the astronaut appears to float by updating a combination of
+            CSS
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/rotateZ"
+              ><code>rotateZ</code></a
+            >
+            and
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/translate"
+              ><code>translate</code></a
+            >
+            animation.
           </p>
           <p>
-            The comet effect was achieved using scale and translation but also
-            shifting the transform origin to give the illusion of streaking
-            across the background.
+            The comet effect was achieved using
+            <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/scale"
+              ><code>scale</code></a
+            >
+            and
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/translate"
+              ><code>translate</code></a
+            >
+            but also updating the
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin"
+              ><code>transform-origin</code></a
+            >
+            to give the illusion of streaking across the background.
           </p>
-          <p>The stars and planets blink using delayed opacity animation.</p>
+          <p>
+            The stars and planets twinkle using
+            <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/opacity"
+              ><code>opacity</code></a
+            >
+            animation with a different
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-delay"
+              ><code>animation-delay</code></a
+            >
+            on each.
+          </p>
         </div>
       </div>
     </section>
@@ -87,12 +172,25 @@
       <div class="columns is-vcentered">
         <div class="column has-text-left">
           <p>
-            The pausing of the marker between steps was accomplished using some
-            keyframes with no changes.
+            The marker moves using
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/translateX"
+              ><code>translateX</code></a
+            >. The pausing of the marker between steps was accomplished using
+            some
+            <a
+              href="https://css-tricks.com/css-keyframe-animation-delay-iterations/"
+              >keyframes with no changes</a
+            >.
           </p>
           <p>
-            The fading in and out of the steps was achieved using specific
-            animation timings and delays.
+            The fading in and out of the steps was achieved by updating the fill
+            colour of the SVG elements with a specific
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-delay"
+              ><code>animation-delay</code></a
+            >
+            on each.
           </p>
         </div>
 
@@ -111,7 +209,7 @@
       <div class="columns is-vcentered">
         <div class="column is-two-thirds">
           <inline-svg
-            class="animation"
+            class="animation animation--dog-walking"
             :class="[
               'animate-background--tree',
               'animate-background--clouds',
@@ -152,6 +250,10 @@
   #man__sweat,
   #dog__tongue {
     display: none;
+  }
+
+  .animation--dog-walking {
+    background: #ddedfd;
   }
 }
 </style>

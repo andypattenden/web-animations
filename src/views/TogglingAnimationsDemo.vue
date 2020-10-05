@@ -8,7 +8,7 @@
     <div class="columns is-centered">
       <p class="column is-8-desktop is-10-tablet">
         Animations can be stopped/started by interacting with the toggles to
-        add/remove CSS classes to the animated element. Providing the ability to
+        add/remove CSS classes on the animated element. Providing the ability to
         toggle animations allows users with vestibular disorders to disable
         them.
       </p>
