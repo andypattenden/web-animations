@@ -9,38 +9,10 @@
 
     <section class="section">
       <div class="columns is-multiline is-centered">
-        <div class="column is-one-third">
+        <div v-for="image in images" :key="image" class="column is-one-third">
           <inline-svg
             class="animation"
-            :src="require('@/assets/undraw_camping.svg')"
-          />
-        </div>
-
-        <div class="column is-one-third">
-          <inline-svg
-            class="animation"
-            :src="require('@/assets/undraw_launch_day.svg')"
-          />
-        </div>
-
-        <div class="column is-one-third">
-          <inline-svg
-            class="animation"
-            :src="require('@/assets/undraw_progress_indicator.svg')"
-          />
-        </div>
-
-        <div class="column is-one-third">
-          <inline-svg
-            class="animation"
-            :src="require('@/assets/undraw_Ride_a_bicycle.svg')"
-          />
-        </div>
-
-        <div class="column is-one-third">
-          <inline-svg
-            class="animation"
-            :src="require('@/assets/undraw_dog_walking.svg')"
+            :src="require(`@/assets/${image}.svg`)"
           />
         </div>
       </div>
@@ -51,6 +23,17 @@
 <script>
 export default {
   name: 'Home',
+  data() {
+    return {
+      images: [
+        'undraw_camping',
+        'undraw_Ride_a_bicycle',
+        'undraw_launch_day',
+        'undraw_progress_indicator',
+        'undraw_dog_walking',
+      ],
+    }
+  },
 }
 </script>
 
